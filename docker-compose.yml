@@ -3,7 +3,7 @@ services:
     web:
         build: .
         volumes:
-            - ./web:/var/www/html/vuesplash
+            - ./web:/var/www/html/laravue-tute
         ports:
             - 8081:8081
             - 3000:3000
