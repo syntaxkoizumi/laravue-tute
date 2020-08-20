@@ -79,7 +79,7 @@ return [
     |
     */
 
-    'locale' => '',
+    'locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -223,5 +223,4 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
     ],
-    js,
 ];
