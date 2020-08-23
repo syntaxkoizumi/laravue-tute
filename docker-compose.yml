@@ -2,17 +2,29 @@ version: '3'
 services:
     web:
         build: .
+        environment:
+            LOG_CHANNEL: stderr
+            DB_CONNECTION: pgsql
+            DB_HOST: db
+            DB_PORT: 5432
+            DB_DATABASE: laravue_tute_develop
+            DB_USERNAME: postgres
+            DB_PASSWORD: secret
         volumes:
             - ./web:/var/www/html/laravue-tute
         ports:
             - 8081:8081
             - 3000:3000
-    database:
+        depends_on:
+            - db
+    db:
         image: postgres:11-alpine
         restart: always
         environment:
             POSTGRES_PASSWORD: secret
+            POSTGRES_USER: postgres
+            POSTGRES_DB: laravue_tute_develop
         volumes:
-            - ./database:/var/lib/postgresql/data
+            - ./database:/var/lib/postgresql/db
         ports:
             - 5434:5432
