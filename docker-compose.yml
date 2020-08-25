@@ -3,7 +3,6 @@ services:
     web:
         build: .
         environment:
-            LOG_CHANNEL: stderr
             DB_CONNECTION: pgsql
             DB_HOST: db
             DB_PORT: 5432
@@ -15,16 +14,23 @@ services:
         ports:
             - 8081:8081
             - 3000:3000
+        tty: true
+        stdin_open: true
+        links:
+            - db
         depends_on:
             - db
     db:
         image: postgres:11-alpine
-        restart: always
         environment:
             POSTGRES_PASSWORD: secret
             POSTGRES_USER: postgres
             POSTGRES_DB: laravue_tute_develop
         volumes:
-            - ./database:/var/lib/postgresql/db
+            - db-data:/var/lib/postgresql/data
         ports:
             - 5434:5432
+
+volumes:
+    db-data:
+        driver: local
