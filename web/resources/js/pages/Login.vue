@@ -75,6 +75,10 @@
 
                 // トップページに移動する
                 this.$router.push('/')
+            },
+            async logout() {
+                await this.$store.dispatch('auth/logout')
+                this.$router.push('/login')
             }
         }
     }
