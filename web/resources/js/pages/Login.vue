@@ -59,9 +59,6 @@
             }
         },
         methods: {
-            login () {
-                console.log(this.loginForm)
-            },
             async register () {
                 // authストアのregisterアクションを呼び出す
                 await this.$store.dispatch('auth/register', this.registerForm)
@@ -76,10 +73,6 @@
                 // トップページに移動する
                 this.$router.push('/')
             },
-            async logout() {
-                await this.$store.dispatch('auth/logout')
-                this.$router.push('/login')
-            }
         }
     }
 </script>
