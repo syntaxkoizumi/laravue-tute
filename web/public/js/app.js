@@ -2141,6 +2141,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2163,6 +2174,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     loginErrors: function loginErrors() {
       return this.$store.state.auth.loginErrorMessages;
+    },
+    registerErrors: function registerErrors() {
+      return this.$store.state.auth.registerErrorMessages;
     }
   },
   methods: {
@@ -2178,8 +2192,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this.$store.dispatch('auth/register', _this.registerForm);
 
               case 2:
-                // トップページに移動する
-                _this.$router.push('/');
+                if (_this.apiStatus) {
+                  // トップページに移動する
+                  _this.$router.push('/');
+                }
 
               case 3:
               case "end":
@@ -2216,6 +2232,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     clearError: function clearError() {
       this.$store.commit('auth/setLoginErrorMessages', null);
+      this.$store.commit('auth/setRegisterErrorMessages', null);
     }
   },
   created: function created() {
@@ -3776,6 +3793,40 @@ var render = function() {
             }
           },
           [
+            _vm.registerErrors
+              ? _c("div", { staticClass: "errors" }, [
+                  _vm.registerErrors.name
+                    ? _c(
+                        "ul",
+                        _vm._l(_vm.registerErrors.name, function(msg) {
+                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                        }),
+                        0
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.registerErrors.email
+                    ? _c(
+                        "ul",
+                        _vm._l(_vm.registerErrors.email, function(msg) {
+                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                        }),
+                        0
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.registerErrors.password
+                    ? _c(
+                        "ul",
+                        _vm._l(_vm.registerErrors.password, function(msg) {
+                          return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                        }),
+                        0
+                      )
+                    : _vm._e()
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c("label", { attrs: { for: "username" } }, [_vm._v("Name")]),
             _vm._v(" "),
             _c("input", {
@@ -20999,7 +21050,7 @@ var mutations = {
     state.loginErrorMessages = messages;
   },
   setRegisterErrorMessages: function setRegisterErrorMessages(state, messages) {
-    state.RegisterErrorMessages = messages;
+    state.registerErrorMessages = messages;
   }
 };
 var actions = {

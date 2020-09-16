@@ -23,7 +23,7 @@ const mutations = {
         state.loginErrorMessages = messages
     },
     setRegisterErrorMessages(state, messages) {
-        state.RegisterErrorMessages = messages
+        state.registerErrorMessages = messages
     }
 }
 
